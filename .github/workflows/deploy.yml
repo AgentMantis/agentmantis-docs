@@ -6,29 +6,39 @@ on:
       - main
 
 permissions:
-  contents: write
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  build_and_deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
-      # Setup Node (match your logs: Node 20 is fine)
       - uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      # Install dependencies
       - run: npm ci
 
-      # Build the docs site
       - run: npm run build
 
-      # Deploy to gh-pages branch via Docusaurus
-      # IMPORTANT: Docusaurus expects GIT_PASS (not just GITHUB_TOKEN)
-      - run: npm run deploy
-        env:
-          GIT_USER: agentbarry
-          GIT_PASS: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: build
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
