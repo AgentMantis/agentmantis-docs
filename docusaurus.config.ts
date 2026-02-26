@@ -132,12 +132,12 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/AgentMantis/agentmantis-docs',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Agent Mantis Pty Ltd. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
