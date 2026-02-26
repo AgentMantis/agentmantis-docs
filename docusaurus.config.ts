@@ -25,6 +25,7 @@ const config: Config = {
   organizationName: 'AgentMantis', // Usually your GitHub org/user name.
   projectName: 'agentmantis-docs', // Usually your repo name.
   deploymentBranch: 'gh-pages', // add this line (safe/default)
+  trailingSlash: false,
   onBrokenLinks: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
