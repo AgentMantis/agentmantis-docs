@@ -1,57 +1,63 @@
 import type {ReactNode} from 'react';
 import clsx from 'clsx';
+import Link from '@docusaurus/Link';
 import Heading from '@theme/Heading';
 import styles from './styles.module.css';
 
-type FeatureItem = {
+type TileItem = {
   title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-  description: ReactNode;
+  emoji: string;
+  description: string;
+  link: string;
 };
 
-const FeatureList: FeatureItem[] = [
+const TileList: TileItem[] = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
+    title: 'Quickstart',
+    emoji: '🚀',
+    description: 'Get up and running in under 5 minutes',
+    link: '/docs/getting-started/quickstart',
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    title: 'Editor',
+    emoji: '✏️',
+    description: 'Create tests with natural language',
+    link: '/docs/product/editor/overview',
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    title: 'RunningMan',
+    emoji: '🏃',
+    description: 'Execute workflows with AI-powered resilience',
+    link: '/docs/product/runningman/overview',
+  },
+  {
+    title: 'CI/CD',
+    emoji: '⚙️',
+    description: 'Run tests on every pull request',
+    link: '/docs/integrations/github-actions/overview',
+  },
+  {
+    title: 'Integrations',
+    emoji: '🔗',
+    description: 'Connect Playwright, Jira, Cloudflare, and more',
+    link: '/docs/category/integrations',
+  },
+  {
+    title: 'Troubleshooting',
+    emoji: '🔍',
+    description: 'Fix common issues fast',
+    link: '/docs/guides/troubleshooting',
   },
 ];
 
-function Feature({title, Svg, description}: FeatureItem) {
+function Tile({title, emoji, description, link}: TileItem) {
   return (
     <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
+      <Link to={link} className={styles.tile}>
+        <div className={styles.tileEmoji}>{emoji}</div>
         <Heading as="h3">{title}</Heading>
         <p>{description}</p>
-      </div>
+      </Link>
     </div>
   );
 }
@@ -61,8 +67,8 @@ export default function HomepageFeatures(): ReactNode {
     <section className={styles.features}>
       <div className="container">
         <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+          {TileList.map((props, idx) => (
+            <Tile key={idx} {...props} />
           ))}
         </div>
       </div>

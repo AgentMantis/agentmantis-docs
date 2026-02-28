@@ -1,0 +1,9 @@
+{
+  "label": "Concepts",
+  "position": 5,
+  "link": {
+    "type": "generated-index",
+    "description": "Understand the architecture and design principles behind Agent Mantis."
+  }
+}
+

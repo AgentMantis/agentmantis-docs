@@ -1,0 +1,9 @@
+{
+  "label": "Releases",
+  "position": 7,
+  "link": {
+    "type": "generated-index",
+    "description": "Changelog and upgrade guides for Agent Mantis releases."
+  }
+}
+

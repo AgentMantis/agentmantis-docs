@@ -5,32 +5,24 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'Agent Mantis Docs',
-  tagline: 'Dinosaurs are cool',
+  title: 'Agent Mantis',
+  tagline: 'AI-powered test automation that adapts to your application',
   favicon: 'img/favicon.png',
 
-  // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
-    v4: true, // Improve compatibility with the upcoming Docusaurus v4
+    v4: true,
   },
 
-  // Set the production url of your site here
   url: 'https://docs.agentmantis.com',
-  // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
-  // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'AgentMantis', // Usually your GitHub org/user name.
-  projectName: 'agentmantis-docs', // Usually your repo name.
-  deploymentBranch: 'gh-pages', // add this line (safe/default)
+  organizationName: 'AgentMantis',
+  projectName: 'agentmantis-docs',
+  deploymentBranch: 'gh-pages',
   trailingSlash: false,
   onBrokenLinks: 'throw',
+  onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
-  // useful metadata like html lang. For example, if your site is Chinese, you
-  // may want to replace "en" with "zh-Hans".
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
@@ -42,8 +34,6 @@ const config: Config = {
       {
         docs: {
           sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/AgentMantis/agentmantis-docs/tree/main/',
         },
         blog: {
@@ -52,10 +42,7 @@ const config: Config = {
             type: ['rss', 'atom'],
             xslt: true,
           },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/AgentMantis/agentmantis-docs/tree/main/',
-          // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
           onUntruncatedBlogPosts: 'warn',
@@ -68,13 +55,12 @@ const config: Config = {
   ],
 
   themeConfig: {
-    // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/agent-mantis.svg',
     colorMode: {
       respectPrefersColorScheme: true,
     },
     navbar: {
-      title: 'Agent Mantis Docs',
+      title: 'Agent Mantis',
       logo: {
         alt: 'Agent Mantis Logo',
         src: 'img/agent-mantis.svg',
@@ -82,13 +68,23 @@ const config: Config = {
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'docsSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'Docs',
+        },
+        {
+          to: '/docs/reference/api/',
+          label: 'API',
+          position: 'left',
+        },
+        {
+          to: '/docs/releases/changelog',
+          label: 'Releases',
+          position: 'left',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/AgentMantis/agentmantis-docs',
+          href: 'https://github.com/AgentMantis',
           label: 'GitHub',
           position: 'right',
         },
@@ -101,25 +97,33 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Tutorial',
-              to: '/docs/intro',
+              label: 'Getting Started',
+              to: '/docs/getting-started/intro',
+            },
+            {
+              label: 'Guides',
+              to: '/docs/category/guides',
+            },
+            {
+              label: 'API Reference',
+              to: '/docs/reference/api/',
             },
           ],
         },
         {
-          title: 'Community',
+          title: 'Product',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+              label: 'Portal',
+              to: '/docs/product/portal/overview',
             },
             {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
+              label: 'Editor',
+              to: '/docs/product/editor/overview',
             },
             {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
+              label: 'RunningMan',
+              to: '/docs/product/runningman/overview',
             },
           ],
         },
@@ -131,8 +135,12 @@ const config: Config = {
               to: '/blog',
             },
             {
+              label: 'Releases',
+              to: '/docs/releases/changelog',
+            },
+            {
               label: 'GitHub',
-              href: 'https://github.com/AgentMantis/agentmantis-docs',
+              href: 'https://github.com/AgentMantis',
             },
           ],
         },
