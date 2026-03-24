@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-# Testing Lifecycle Overview
+# Release Lifecycle Overview
 
 Every code change in Agent Mantis must be backed by automated tests, and those tests gate every release through the CI/CD pipeline. This section outlines the development standards, testing tiers, and enforcement gates that ensure no untested work reaches production.
 
