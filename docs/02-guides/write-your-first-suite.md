@@ -355,3 +355,148 @@ test('should create token with 90-day expiry', async ({ page, testData }) => {
 });
 ```
 
+---
+
+## Authentication
+
+### Authenticate Once, Reuse Everywhere
+
+Authentication is performed **once** in a setup project (`e2e/auth/auth.setup.ts`) that runs before all test projects. The session state is saved to a file (e.g. `e2e/.auth/user.json`) and reused by every test via Playwright's `storageState` configuration.
+
+### NEVER Log In Before Each Test
+
+**Do NOT write login logic in specs, POMs, `beforeEach`, or `beforeAll`** unless you have been explicitly asked to do so. Authentication is already handled by the setup project.
+
+```typescript
+// ❌ WRONG — never do this
+test.beforeEach(async ({ page }) => {
+    await page.goto('/login');
+    await page.fill('#email', 'user@example.com');
+    await page.fill('#password', 'secret');
+    await page.click('button[type="submit"]');
+});
+
+// ✅ CORRECT — auth is already handled via storageState in playwright.config.ts
+// No login code needed anywhere in your specs or POMs.
+```
+
+### `storageState` and `indexedDB`
+
+When saving the authenticated session in `auth.setup.ts`, use the `indexedDB` option if the application stores authentication tokens in IndexedDB (common with Firebase Auth, Supabase, AWS Amplify, etc.):
+
+```typescript
+// If the app uses IndexedDB for auth (e.g. Firebase):
+await page.context().storageState({ path: authFile, indexedDB: true });
+
+// If the app only uses cookies/localStorage:
+await page.context().storageState({ path: authFile });
+```
+
+**Rule:** If the application's login flow writes to IndexedDB, you **must** pass `indexedDB: true` — otherwise the saved session will be incomplete and tests will hit unauthenticated states.
+
+---
+
+## Navigation
+
+- **Always use direct URL navigation** (e.g. `page.goto('/dashboard')`).
+- **Do NOT click through menus or sidebars** to navigate — menu state and animations cause flaky tests.
+- After navigating, always assert the URL and a key heading/element are visible.
+
+---
+
+## Selectors & Locator Strategy
+
+### Priority Order
+
+1. `getByRole()` — buttons, headings, dialogs (most resilient)
+2. `getByLabel()` — form fields
+3. `getByText()` — visible text content
+4. `getByPlaceholder()` — input placeholders
+5. `locator()` with CSS / `filter()` — last resort
+
+### Framework-Specific Guidance
+
+- **Dynamically rendered attributes** (tooltips, popovers) may not be in the DOM at query time. Use `filter()` to match child element content instead of attribute selectors.
+- **Icon buttons** often lack visible text. Match by child icon element content or `aria-label`.
+- Prefer **role-based** and **label-based** selectors over CSS classes, which are brittle and framework-specific.
+
+---
+
+## Environment Configuration
+
+### Per-Environment `.env` Files
+
+Each environment has its own `.env` file in the `e2e/` directory:
+
+| File              | Environment   | Example `BASE_URL`                        |
+|-------------------|---------------|-------------------------------------------|
+| `.env.local`      | Local dev     | `http://localhost:5000`                    |
+| `.env.dev`        | Development   | `https://dev.portal.agentmantis.com`       |
+| `.env.test`       | Test          | `https://test.portal.agentmantis.com`      |
+| `.env.uat`        | UAT           | `https://uat.portal.agentmantis.com`       |
+| `.env.production` | Production    | `https://portal.agentmantis.com`           |
+
+**Every file uses the same variable names** — only the values differ:
+
+```env
+BASE_URL="https://portal.agentmantis.com"
+LOGIN_EMAIL="your-email@example.com"
+LOGIN_PASSWORD="your-password"
+AUTH_FILE="e2e/.auth/user.json"
+```
+
+### Selecting the Active Environment
+
+Set `TEST_ENV` via CLI (or shell profile) to choose which `.env.{env}` file is loaded:
+
+```bash
+TEST_ENV=dev npx playwright test          # loads .env then .env.dev
+TEST_ENV=production npx playwright test    # loads .env then .env.production
+npx playwright test                        # defaults to production
+```
+
+### How It Works
+
+- `e2e/helpers/env-config.ts` reads `TEST_ENV` and loads environment variables in two layers via `dotenv`:
+  1. `e2e/.env` — base file (can hold `TEST_ENV` and all variables).
+  2. `e2e/.env.{env}` — optional environment-specific override.
+- **Both files are optional.** If neither exists the process continues and relies on variables already present in the environment (e.g. injected by CI or a container). `dotenv` never overwrites a variable that is already set, so CLI exports and CI-injected values always win.
+- All variables (`BASE_URL`, `LOGIN_EMAIL`, `LOGIN_PASSWORD`, `AUTH_FILE`) are **required** — missing ones throw an error. **Never fall back to hardcoded defaults.**
+
+### Git Rules
+
+- `.env.*` files contain secrets and are **git-ignored**.
+- `.env.example` is the only env file committed — it serves as the template.
+- To set up a new environment, copy `.env.example` to `.env.{env}` and fill in the values.
+
+---
+
+## Quick Reference — Creating a New Test Suite
+
+### Regression / Smoke Test
+
+1. **Create the POM:** `e2e/poms/{feature}.page.ts` extending `BasePage`.
+2. **Implement `setUp()` and `tearDown()`** — navigate + clean up stale data.
+3. **Add JSDoc** to every public method (step-by-step descriptions).
+4. **Create test data:** `e2e/test-data/{feature}.json`.
+5. **Update fixtures:** Add interface + loader in `e2e/fixtures/base.ts`.
+6. **Create the spec:** `e2e/tests/regression/{feature}.spec.ts` (or `tests/smoke/`).
+7. **Add `beforeAll`** that calls `pom.setUp()` with a fresh context.
+8. **Write tests** — each navigates independently, uses `testData`, no hardcoded values.
+9. **Ensure parallelism** — every test is independent; no shared mutable state.
+10. **Run and verify:**
+    ```bash
+    npx playwright test --project="chromium:regression" {feature}.spec.ts
+    ```
+
+### Acceptance Tests (Ticket-Driven)
+
+1. **Check the existing POM** for the page under test. Add new methods if needed.
+2. **Create the spec:** `e2e/tests/acceptance/{TICKET}-{description}.spec.ts`.
+3. **Use the ticket key** in `test.describe` (e.g. `'MANT-123: Feature Name'`).
+4. **Write tests** that validate the ticket's acceptance criteria.
+5. **Run and verify:**
+    ```bash
+    npx playwright test --project="chromium:acceptance" {TICKET}-{description}.spec.ts
+    ```
+6. **After ticket is Done:** Promote to `regression/` or `smoke/`, or delete if covered.

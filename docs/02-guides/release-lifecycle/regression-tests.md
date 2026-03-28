@@ -21,5 +21,5 @@ Regression tests verify that existing features continue to work correctly after 
 
 ## Promoting Tests Here
 
-Tests graduate to this folder from `tests/functional/` once their coverage is stable and no longer tied to a single in-progress ticket.
+Tests graduate to this folder from `tests/acceptance/` once their coverage is stable and no longer tied to a single in-progress ticket. See [Acceptance Tests → Promotion Lifecycle](./acceptance-tests#promotion-lifecycle) for the full promotion checklist.
 
