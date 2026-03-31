@@ -12,11 +12,11 @@ Agent Mantis connects to your existing tools so workflows can pull data, run act
 Every integration follows a two-step pattern:
 
 1. **Configure** — Connect your account in the portal's **Integrations** page. Each integration type has its own setup form (API keys, OAuth, or service accounts depending on the tool).
-2. **Use in the editor** — Drag the integration node onto the canvas, select your connection, choose an operation, and fill in the fields. The node's settings panel is driven by the `integration_panels` configuration so each integration shows only the fields relevant to the selected operation.
+2. **Use in the editor** — Drag the integration node onto the canvas, select your connection, choose an operation, and fill in the fields. Each integration shows only the fields relevant to the selected operation.
 
 ### Configuration (Portal)
 
-Navigate to **Settings → Integrations** in the portal. Click **Add Integration**, choose the type, and complete the connection form. Credentials are encrypted and stored in the `integration_secrets` Firestore collection under your team.
+Navigate to **Settings → Integrations** in the portal. Click **Add Integration**, choose the type, and complete the connection form. Credentials are encrypted and stored securely under your team.
 
 Once configured, the integration appears as "connected" and its node becomes available in the editor's command palette.
 
@@ -80,26 +80,5 @@ Nodes can be wired together with connections so the output of one node feeds int
 |---|---|
 | [Flow](/docs/integrations/flow) | Execute another workflow as a sub-workflow |
 
-## Integration architecture
 
-```
-Portal (Configuration)          Editor (Usage)
-┌─────────────────────┐        ┌──────────────────────┐
-│  Integration Form   │        │  Canvas Node          │
-│  (agentmantis-      │        │  ┌────────────────┐   │
-│   integrations lib) │        │  │ Data Tab       │   │
-│         │           │        │  │ (fields from   │   │
-│         ▼           │        │  │  integration_  │   │
-│  integration_secrets│───────▶│  │  panels)       │   │
-│  (Firestore)        │        │  ├────────────────┤   │
-│                     │        │  │ Config Tab     │   │
-│                     │        │  │ (connection    │   │
-│                     │        │  │  selector)     │   │
-└─────────────────────┘        │  └────────────────┘   │
-                               │         │             │
-                               │         ▼             │
-                               │  workflow-runner      │
-                               │  (execution)          │
-                               └──────────────────────┘
-```
 

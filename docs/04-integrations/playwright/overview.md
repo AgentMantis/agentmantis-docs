@@ -18,15 +18,15 @@ Add a **Playwright** node to the canvas. The settings panel offers three ways to
 
 | Mode | How it works |
 |---|---|
-| **Inline** | Write or paste a Playwright test directly in the editor. The test file is stored in Cloud Storage. |
+| **Inline** | Write or paste a Playwright test directly in the editor. |
 | **Zip upload** | Upload a `.zip` archive containing your full test suite. Choose a config file and project after upload. |
-| **Integration** | Connect the Playwright node to a **GitHub** or **Bitbucket** node on the canvas. The runner clones the repository at execution time. |
+| **Integration** | Connect the Playwright node to a **GitHub** or **Bitbucket** node on the canvas. The repository is cloned automatically at execution time. |
 
 ### Running tests
 
 Once a test source is configured the node is marked as ready (green completion indicator). Connect it to downstream nodes — for example an **LLM** node to summarise failures, a **Slack** node to alert the team, or a **Jira** node to create tickets.
 
-The workflow runner executes the test inside a containerised Playwright environment with all browsers pre-installed.
+Tests are executed in a Playwright environment with all browsers pre-installed.
 
 ## Playwright version
 

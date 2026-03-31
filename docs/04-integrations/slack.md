@@ -22,7 +22,7 @@ Click **Test Connection** to verify the credentials.
 
 ## Editor usage
 
-Add a **Slack** node to the canvas. The settings panel is loaded from the `integration_panels` Firestore collection.
+Add a **Slack** node to the canvas.
 
 ### Data tab
 

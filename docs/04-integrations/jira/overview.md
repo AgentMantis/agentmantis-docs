@@ -21,7 +21,7 @@ Click **Test Connection** to verify the credentials. On success you'll see the c
 
 ## Editor usage
 
-Add a **Jira** node to the canvas. The settings panel is loaded from the `integration_panels` Firestore collection and includes:
+Add a **Jira** node to the canvas. The settings panel includes:
 
 ### Data tab
 

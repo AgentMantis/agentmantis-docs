@@ -19,7 +19,7 @@ Click **Test Connection** to verify the webhook.
 
 ## Editor usage
 
-Add a **Google Chat** node to the canvas. The settings panel is loaded from the `integration_panels` Firestore collection.
+Add a **Google Chat** node to the canvas.
 
 ### Data tab
 

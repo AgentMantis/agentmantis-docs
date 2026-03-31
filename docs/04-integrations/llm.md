@@ -4,7 +4,7 @@ sidebar_position: 9
 
 # LLM
 
-Run AI-powered analysis using a configurable language model. LLM is a **built-in** node — its fields are defined locally rather than loaded from Firestore.
+Run AI-powered analysis using a configurable language model.
 
 ## Configuration
 
@@ -12,7 +12,7 @@ No external credentials are required. The LLM node uses the platform's built-in 
 
 ## Editor usage
 
-Add an **LLM** node to the canvas. The settings panel has locally defined fields.
+Add an **LLM** node to the canvas.
 
 ### Data tab
 

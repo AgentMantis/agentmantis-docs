@@ -21,7 +21,7 @@ Click **Test Connection** to verify the credentials.
 
 ## Editor usage
 
-Add an **Asana** node to the canvas. The settings panel is loaded from the `integration_panels` Firestore collection.
+Add an **Asana** node to the canvas.
 
 ### Data tab
 

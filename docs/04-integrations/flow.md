@@ -12,7 +12,7 @@ No external credentials are required. Flow nodes reference other workflows withi
 
 ## Editor usage
 
-Add a **Flow** node to the canvas. The settings panel is loaded from the `integration_panels` Firestore collection.
+Add a **Flow** node to the canvas.
 
 ### Data tab
 

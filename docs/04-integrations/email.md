@@ -4,7 +4,7 @@ sidebar_position: 8
 
 # Email
 
-Send and receive emails from a workflow. Email is a **built-in** node — its fields are defined locally rather than loaded from Firestore.
+Send and receive emails from a workflow.
 
 ## Configuration
 
@@ -12,7 +12,7 @@ Email connections are configured in **Settings → Integrations → Add Integrat
 
 ## Editor usage
 
-Add an **Email** node to the canvas. The settings panel has locally defined fields (not from `integration_panels`).
+Add an **Email** node to the canvas.
 
 ### Data tab
 

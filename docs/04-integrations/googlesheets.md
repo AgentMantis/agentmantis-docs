@@ -21,7 +21,7 @@ Click **Test Connection** to verify access.
 
 ## Editor usage
 
-Add a **Google Sheets** node to the canvas. The settings panel is loaded from the `integration_panels` Firestore collection.
+Add a **Google Sheets** node to the canvas.
 
 ### Data tab
 
