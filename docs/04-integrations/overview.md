@@ -33,52 +33,49 @@ Nodes can be wired together with connections so the output of one node feeds int
 
 ### Testing & Automation
 
-| Integration | Description |
-|---|---|
-| [Playwright](/docs/integrations/playwright/overview) | Browser-based test execution with inline, zip, or repository sources |
-| [WCAG](/docs/integrations/wcag) | Accessibility compliance testing |
-| [OWASP](/docs/integrations/owasp) | Security vulnerability scanning |
+| Integration                                                                 | Description                                                          |
+| --------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [Playwright](/docs/integrations/testing-and-automation/playwright/overview) | Browser-based test execution with inline, zip, or repository sources |
+| [WCAG](/docs/integrations/testing-and-automation/wcag)                      | Accessibility compliance testing                                     |
+| [OWASP](/docs/integrations/testing-and-automation/owasp)                    | Security vulnerability scanning                                      |
 
 ### AI & Language Models
 
-| Integration | Description |
-|---|---|
-| [LLM](/docs/integrations/llm) | AI-powered analysis using configurable language models |
+| Integration                               | Description                                            |
+| ----------------------------------------- | ------------------------------------------------------ |
+| [LLM](/docs/integrations/ai-and-llms/llm) | AI-powered analysis using configurable language models |
 
 ### Version Control
 
-| Integration | Description |
-|---|---|
-| [GitHub](/docs/integrations/github) | Repository browsing, cloning, and file access |
-| [Bitbucket](/docs/integrations/bitbucket) | Repository browsing, cloning, and file access |
+| Integration                                               | Description                                   |
+| --------------------------------------------------------- | --------------------------------------------- |
+| [GitHub](/docs/integrations/version-control/github)       | Repository browsing, cloning, and file access |
+| [Bitbucket](/docs/integrations/version-control/bitbucket) | Repository browsing, cloning, and file access |
 
 ### Communication
 
-| Integration | Description |
-|---|---|
-| [Slack](/docs/integrations/slack) | Send messages and create channels |
-| [Email](/docs/integrations/email) | Send and receive emails with filtering |
-| [Google Chat](/docs/integrations/googlechat) | Send messages to Google Chat spaces |
+| Integration                                                | Description                            |
+| ---------------------------------------------------------- | -------------------------------------- |
+| [Slack](/docs/integrations/communication/slack)            | Send messages and create channels      |
+| [Email](/docs/integrations/communication/email)            | Send and receive emails with filtering |
+| [Google Chat](/docs/integrations/communication/googlechat) | Send messages to Google Chat spaces    |
 
 ### Project Management
 
-| Integration | Description |
-|---|---|
-| [Jira](/docs/integrations/jira/overview) | Create, update, and manage Jira issues |
-| [Asana](/docs/integrations/asana) | Create and manage Asana tasks |
+| Integration                                                 | Description                            |
+| ----------------------------------------------------------- | -------------------------------------- |
+| [Jira](/docs/integrations/project-management/jira/overview) | Create, update, and manage Jira issues |
+| [Asana](/docs/integrations/project-management/asana)        | Create and manage Asana tasks          |
 
 ### Cloud Storage
 
-| Integration | Description |
-|---|---|
-| [Google Drive](/docs/integrations/googledrive) | Upload and manage files in Google Drive |
-| [Google Sheets](/docs/integrations/googlesheets) | Read and write spreadsheet data |
+| Integration                                                    | Description                             |
+| -------------------------------------------------------------- | --------------------------------------- |
+| [Google Drive](/docs/integrations/cloud-storage/googledrive)   | Upload and manage files in Google Drive |
+| [Google Sheets](/docs/integrations/cloud-storage/googlesheets) | Read and write spreadsheet data         |
 
 ### Workflow
 
-| Integration | Description |
-|---|---|
-| [Flow](/docs/integrations/flow) | Execute another workflow as a sub-workflow |
-
-
-
+| Integration                              | Description                                |
+| ---------------------------------------- | ------------------------------------------ |
+| [Flow](/docs/integrations/workflow/flow) | Execute another workflow as a sub-workflow |

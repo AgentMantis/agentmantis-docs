@@ -42,6 +42,5 @@ env:
 
 ## Next steps
 
-- [GitHub Actions integration →](../integrations/github-actions/overview)
+- [GitHub Actions integration →](../integrations/version-control/github-actions/overview)
 - [Secrets and environments →](./secrets-and-envs)
-

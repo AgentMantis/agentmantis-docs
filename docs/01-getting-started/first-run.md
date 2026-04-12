@@ -40,6 +40,5 @@ Check the **Runs** page for:
 
 ## What's next?
 
-- [Guides: Write your first suite →](../guides/write-your-first-suite)
+- [Guides: TestSkills — AI-Powered Test Writing →](../guides/test-skills)
 - [Product: Editor overview →](../product/editor/overview)
-
