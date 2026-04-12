@@ -14,17 +14,17 @@ Agent Mantis is an AI-powered test automation platform that turns natural-langua
 
 ## Key capabilities
 
-| Capability | Description |
-|---|---|
-| **AI-driven test generation** | Describe what to test in plain English |
-| **Self-healing selectors** | Tests adapt when your UI changes |
-| **Playwright under the hood** | Full browser automation power |
-| **Portal dashboard** | Manage projects, environments, and runs |
-| **CI/CD integration** | Run tests on every PR via GitHub Actions |
+| Capability                    | Description                              |
+| ----------------------------- | ---------------------------------------- |
+| **AI-driven test generation** | Describe what to test in plain English   |
+| **Self-healing selectors**    | Tests adapt when your UI changes         |
+| **Playwright under the hood** | Full browser automation power            |
+| **Portal dashboard**          | Manage projects, environments, and runs  |
+| **CI/CD integration**         | Run tests on every PR via GitHub Actions |
 
 ## Next steps
 
 - [Quickstart →](./quickstart)
 - [Install Agent Mantis →](./install)
 - [Run your first test →](./first-run)
-
+- [Glossary →](../reference/glossary)

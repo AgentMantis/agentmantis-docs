@@ -28,6 +28,7 @@ Create an acceptance test when a ticket has **explicit success criteria** that c
 ```
 
 Examples:
+
 - `MANT-123-vault-bulk-delete.spec.ts`
 - `MANT-456-webhook-retry-policy.spec.ts`
 - `PROJ-789-user-profile-avatar-upload.spec.ts`
@@ -39,24 +40,27 @@ The `{short-description}` should be a brief, kebab-case summary of what the tick
 The outer `test.describe` block **must** include the ticket key so test reports are traceable back to the requirement:
 
 ```typescript
-import { test } from '../../fixtures/base';
-import { VaultPage } from '../../poms/vault.page';
+import { test } from "../../fixtures/base";
+import { VaultPage } from "../../poms/vault.page";
 
-test.describe('MANT-123: Vault Bulk Delete', () => {
-    test.beforeAll(async ({ browser }) => {
-        const context = await browser.newContext({
-            storageState: 'e2e/.auth/user.json',
-        });
-        const page = await context.newPage();
-        const vault = new VaultPage(page);
-        await vault.setUp();
-        await page.close();
-        await context.close();
+test.describe("MANT-123: Vault Bulk Delete", () => {
+  test.beforeAll(async ({ browser }) => {
+    const context = await browser.newContext({
+      storageState: "e2e/.auth/user.json",
     });
+    const page = await context.newPage();
+    const vault = new VaultPage(page);
+    await vault.setUp();
+    await page.close();
+    await context.close();
+  });
 
-    test('should select multiple secrets and delete them in one action', async ({ page, testData }) => {
-        // ... validates acceptance criteria from MANT-123
-    });
+  test("should select multiple secrets and delete them in one action", async ({
+    page,
+    testData,
+  }) => {
+    // ... validates acceptance criteria from MANT-123
+  });
 });
 ```
 
@@ -66,7 +70,7 @@ Acceptance tests follow **all** the same POM rules as regression/smoke tests:
 
 - Use the **existing POM** for the page under test. If the ticket requires new interactions, **add methods to the existing POM** — do not create a second POM for the same page.
 - Only create a **new POM** if the ticket introduces an entirely new page.
-- All new POM methods must have full JSDoc (see [E2E Test Rules → POM Rules](../write-your-first-suite#detailed-jsdoc-on-every-method)).
+- All new POM methods must have full JSDoc — see the [TestSkills `create-pom` skill](../test-skills) for guidance on generating compliant POMs with your AI agent.
 
 ## Who Is Responsible
 
@@ -76,11 +80,11 @@ The **developer working the ticket** is responsible for creating the acceptance 
 
 Acceptance tests are **temporary by design**. Once the ticket is complete and the feature is stable, the test must be reviewed and either:
 
-| Action | When to use |
-|--------|-------------|
+| Action                    | When to use                                                                                                                                                                                                                                  |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Promote to regression** | The feature is permanent and should be validated on every run. Move the spec to `tests/regression/`, rename to `{feature}.spec.ts` (dropping the ticket prefix), and merge into an existing regression spec if one already covers that page. |
-| **Promote to smoke** | The feature is on the critical path and should be part of the quick sanity suite. Move to `tests/smoke/` and rename. |
-| **Delete** | The test is fully covered by existing regression/smoke tests, or the feature was reverted. Remove the spec file. |
+| **Promote to smoke**      | The feature is on the critical path and should be part of the quick sanity suite. Move to `tests/smoke/` and rename.                                                                                                                         |
+| **Delete**                | The test is fully covered by existing regression/smoke tests, or the feature was reverted. Remove the spec file.                                                                                                                             |
 
 **Promotion checklist:**
 
